@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  register-shopify-webhook
+  SAM Template for registering webhooks in shopify 
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  RegisterShopifyWebhookFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: register_shopify_webhook/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Architectures:
+        - x86_64
+      Events:
+        RegisterShopifyWebhook:
+          Type: Api
+          Properties:
+            Path: /register
+            Method: post
+
+Outputs:
+  RegisterShopifyWebhookApi:
+    Description: "API Gateway endpoint URL for Prod stage for RegisterShopifyWebhook function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/register/"
+  RegisterShopifyWebhookFunction:
+    Description: "RegisterShopifyWebhook Lambda Function ARN"
+    Value: !GetAtt RegisterShopifyWebhookFunction.Arn
+  RegisterShopifyWebhookFunctionIamRole:
+    Description: "Implicit IAM Role created for RegisterShopifyWebhook function"
+    Value: !GetAtt RegisterShopifyWebhookFunctionRole.Arn

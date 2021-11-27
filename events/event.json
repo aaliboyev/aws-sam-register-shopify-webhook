@@ -1,0 +1,15 @@
+{
+  "body": {
+    "shopUrl": "test.myshopify.com",
+    "apiVersion": "2021-10",
+    "token": "TOKEN"
+  },
+  "resource": "/register",
+  "path": "/register",
+  "httpMethod": "POST",
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "isBase64Encoded": false
+}
